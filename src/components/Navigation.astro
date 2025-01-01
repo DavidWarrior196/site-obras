@@ -1,0 +1,71 @@
+---
+const links = [{
+    label: "Empresa",
+    url: "/empresa"
+}, {
+    label: "Serviços",
+    url: "/servicos"
+}, {
+    label: "Portfolio",
+    url: "/portfolio"
+}, {
+    label: "Orçamento",
+    url: "/orcamento"
+}, {
+    label: "Contactos",
+    url: "/contactos"
+}]
+---
+
+<nav class="navbar">
+    <ul class="navbar__content">
+        {links.map((link) =>
+            <li class="navbar__item">
+                <a 
+                    class="navbar__link link-animation"
+                    href={link.url}
+                >
+                    {link.label}
+                </a>
+            </li>
+        )}
+    </ul>
+</nav>
+
+<style>
+    .navbar {
+        padding: 10px;
+        height: 100%;
+        width: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+    .navbar__content {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        list-style-type: none;
+        height: inherit;
+        width: 100%;
+        padding: 0;
+        max-width: 700px;
+    }
+    .navbar__item {
+        padding: 10px 15px;
+        flex-basis: 100px;
+        text-align: center;
+    }
+    .navbar__link {
+        color: inherit;
+        font: var(--text-lg);
+        font-size: 1.3rem;
+        position: relative;
+    }
+
+    @media only screen and (max-width: 992px) {
+        .navbar:not(.header__navbar--expanded .navbar) {
+            display: none;
+        }
+    }
+</style>

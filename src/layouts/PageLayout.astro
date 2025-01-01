@@ -1,0 +1,42 @@
+---
+import MainLayout from "./MainLayout.astro";
+import { Image } from "astro:assets";
+
+const { pageTitle, pageName, background } = Astro.props;
+---
+
+<MainLayout pageTitle={pageTitle}>
+    <div class="atfold">
+        <div class="atfold__background">
+            <Image 
+                class="atfold__background_image"
+                src={background}
+                alt="Homens de negócios"
+                data-rellax-speed="-5"
+            />
+        </div>
+        <div class="atfold__content">
+            <div class="atfold__title">
+                <h2>{pageName}</h2>
+            </div>
+            <div class="atfold__breadcrumb">
+                <span>
+                    <a href="/">Início</a>
+                </span>
+                <span>/</span>
+                <span>
+                    {pageTitle}
+                </span>
+            </div>
+        </div>
+    </div>
+    <main id="main">
+		<br/><br/><br/><br/><br/>
+
+		<h2 style="color:gray; margin-left: 50px;">Ainda Vazio...</h2>
+
+		<br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>
+	</main>
+</MainLayout>
+
+<script> import "../scripts/parallax-effect.js"; </script>

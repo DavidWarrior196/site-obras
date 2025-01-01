@@ -1,0 +1,44 @@
+[
+    {
+        "title": "Construção Residencial",
+        "description": "Projetos personalizados para a construção de áreas e espaços internos. Qualidade e eficiência em cada detalhe.",
+        "imageSrc": "construcao-fundo.jpg",
+        "imageAlt": "alt text"
+    },
+    {
+        "title": "Remodelação de interiores",
+        "description": "Transformamos interiores com reformas que valorizam beleza, funcionalidade e conforto.",
+        "imageSrc": "remodelacao-fundo.jpg",
+        "imageAlt": "alt text"
+    },
+    {
+        "title": "Pinturas",
+        "description": "Renove o seu espaço com uma pintura profissional e acabamentos impecáveis e duradouros.",
+        "imageSrc": "pinturas-fundo.jpg",
+        "imageAlt": "alt text"
+    },
+    {
+        "title": "Limpeza",
+        "description": "Serviço completo de higienização e lavagem de espaços comuns, como garagens, pátios, jardins ou até telhados. Garantimos um ambiente impecável.",
+        "imageSrc": "limpeza-fundo.jpeg",
+        "imageAlt": "alt text"
+    },
+    {
+        "title": "Reparações SOS",
+        "description": "Intervenções ou reparações que exijam uma resposta rápida e profissional na área de residência, como canalização, eletricidade, desentupimentos, etc.",
+        "imageSrc": "reparacoes-fundo.jpg",
+        "imageAlt": "alt text"
+    },
+    {
+        "title": "Montagem e Fixação",
+        "description": "Montagem e instalação segura de todo o tipo de móveis residenciais e comerciais, incluindo IKEA, Moviflor, Confirma, etc.",
+        "imageSrc": "montagem-fundo.jpg",
+        "imageAlt": "Freepik"
+    },
+    {
+        "title": "Gesso Cartonado",
+        "description": "Especialista em tetos e paredes falsas, divisórias e revestimentos em gesso cartonado. Soluções modernas e resistentes, exclusivamente em Pladur.",
+        "imageSrc": "pladur-fundo.jpg",
+        "imageAlt": "Freepik"
+    }
+]

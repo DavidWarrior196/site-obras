@@ -1,16 +1,18 @@
 ---
+import carouselData from '../data/carousel-data.json';
+import Carousel from '../components/Carousel';
+import MainLayout from '../layouts/MainLayout.astro';
 
+const pageTitle = "Página Inicial";
 ---
 
-<html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<meta name="viewport" content="width=device-width" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Astro</title>
-	</head>
-	<body>
-		<h1>Astro Website</h1>
-	</body>
-</html>
+<MainLayout pageTitle={pageTitle}>
+	<Carousel client:load slides={carouselData} />
+	<main id="main">
+		<br/><br/><br/><br/><br/>
+
+		<h2 style="color:gray; margin-left: 50px;">Ainda Vazio...</h2>
+
+		<br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>
+	</main>
+</MainLayout>
