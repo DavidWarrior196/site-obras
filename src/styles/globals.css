@@ -26,6 +26,7 @@
     --blue-secondary: #7AA9DD;
     --yellow-accent: #FFC300;
     --gray-background: #eaeaea;
+    --background-color: #FCFCFC;
 
     --gray-900: #212121;
     --gray-700: #616161;
@@ -58,6 +59,9 @@ html {
     font-size: var(--text-base);
     /*overflow-x: hidden;*/
 }
+body {
+    background-color: var(--background-color);
+}
 *, ::before, ::after {
     box-sizing: border-box;
     margin: 0;
@@ -89,6 +93,21 @@ a {
 }
 
 /** SELECTORS **/
+.text-base {
+    font: var(--text-base);
+}
+.text-sm {
+    font: var(--text-sm);
+}
+.text-lg {
+    font: var(--text-lg);
+}
+.text-xl {
+    font: var(--text-xl);
+}
+.text-button {
+    font: var(--text-button);
+}
 .button--primary {
     display: grid;
     place-items: center;
@@ -99,6 +118,21 @@ a {
     border-radius: 10px;
     color: black;
     border: none;
+}
+.button--secondary {
+    font: var(--text-button);
+    color: white;
+    background-color: var(--blue-primary);
+    border-radius: 10px;
+    width: 220px;
+    height: 55px;
+    border: none;
+}
+.light {
+    color: white;
+}
+.dark {
+    color: black;
 }
 .link-animation::before {
     content: "";

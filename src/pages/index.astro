@@ -1,7 +1,28 @@
 ---
 import carouselData from '../data/carousel-data.json';
+import landingservices from '../data/landing-services.json';
+
 import Carousel from '../components/Carousel';
+import Card from '../components/Card.astro';
 import MainLayout from '../layouts/MainLayout.astro';
+import Spacer from '../components/Spacer.astro';
+import { Image } from 'astro:assets';
+import type { ImageMetadata } from 'astro';
+
+import toolsTable from '../assets/images/tools-table.jpg';
+import image from '../assets/images/martelo-aço-com-outros-elementos-construção-ferramentas.jpg';
+import CallToaction from '../components/CallToAction.astro';
+
+const iconsPaths = import.meta.glob<{ default: ImageMetadata }>("../assets/icons/*.svg");
+const icons = Object.keys(iconsPaths).reduce((acc, filePath) => {
+	const iconName = filePath.split("/").pop()?.split(".").shift();
+	if(iconName && iconsPaths[filePath]) {
+		acc[iconName] = iconsPaths[filePath];
+	}
+	return acc;
+}, {} as Record<string, () => Promise<{ default: ImageMetadata }>>);
+
+console.log(icons)
 
 const pageTitle = "Página Inicial";
 ---
@@ -9,10 +30,354 @@ const pageTitle = "Página Inicial";
 <MainLayout pageTitle={pageTitle}>
 	<Carousel client:load slides={carouselData} />
 	<main id="main">
-		<br/><br/><br/><br/><br/>
+		<section class="landing-section gray-bg">
+			<div class="landing-section__content landing-introduction">
+				<div class="landing-introduction__media">
+					<!--
+					<video 
+						width="320"
+						height="240" 
+						controls
+					>
+						<source src="movie.mp4" type="video/mp4">
+						<source src="movie.ogg" type="video/ogg">
+						<img src="/images/carousel/montagem-fundo.jpg" alt="" />
+					</video>
+					-->
+					<Image 
+						src={image}
+						alt=""
+					/>
+				</div>
+				<div class="landing-introduction__content">
+					<h3 class="landing-introduction__heading">
+						Cria projeto e construção exclusivos de acordo com as necessidades dos clientes
+					</h3>
+					<div class="underline-bar" />
+					<p class="landing-introduction__text">
+						Somos uma construtora diversificada, formada por equipes de pessoas com experiência comprovada em seus segmentos de atuação. Todos trabalhando para projetar, construir, transportar, operar e manter projetos em todos os EUA. 
+					</p>
+					<p class="landing-introduction__text">
+						Mas acreditamos que os projetos vão além de concreto e aço. Valorizamos os nossos clientes e a sua opinião e procuramos corresponder às expectativas.
+					</p>
+				</div>
+				<div class="landing-introduction__cta">
+					<p>
+						Não perca mais tempo. Contacte-nos ou faça uma proposta de orçamento para iniciar o seu projeto!
+					</p>
+					<a class="landing-introduction__button button--secondary" aria-label="Pedir Orçamento" href="/orcamento">
+						<span>Pedir Orçamento</span>
+						<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="currentColor" d="M16.519 16.501c.175-.136.334-.295.651-.612l3.957-3.958c.096-.095.052-.26-.075-.305a4.3 4.3 0 0 1-1.644-1.034a4.3 4.3 0 0 1-1.034-1.644c-.045-.127-.21-.171-.305-.075L14.11 12.83c-.317.317-.476.476-.612.651q-.243.311-.412.666c-.095.2-.166.414-.308.84l-.184.55l-.292.875l-.273.82a.584.584 0 0 0 .738.738l.82-.273l.875-.292l.55-.184c.426-.142.64-.212.84-.308q.355-.17.666-.412m5.849-5.809a2.163 2.163 0 1 0-3.06-3.059l-.126.128a.52.52 0 0 0-.148.465c.02.107.055.265.12.452c.13.375.376.867.839 1.33s.955.709 1.33.839c.188.065.345.1.452.12a.53.53 0 0 0 .465-.148z"/><path fill="currentColor" fill-rule="evenodd" d="M4.172 3.172C3 4.343 3 6.229 3 10v4c0 3.771 0 5.657 1.172 6.828S7.229 22 11 22h2c3.771 0 5.657 0 6.828-1.172C20.981 19.676 21 17.832 21 14.18l-2.818 2.818c-.27.27-.491.491-.74.686a5 5 0 0 1-.944.583a8 8 0 0 1-.944.355l-2.312.771a2.083 2.083 0 0 1-2.635-2.635l.274-.82l.475-1.426l.021-.066c.121-.362.22-.658.356-.944q.24-.504.583-.943c.195-.25.416-.47.686-.74l4.006-4.007L18.12 6.7l.127-.127A3.65 3.65 0 0 1 20.838 5.5c-.151-1.03-.444-1.763-1.01-2.328C18.657 2 16.771 2 13 2h-2C7.229 2 5.343 2 4.172 3.172M7.25 9A.75.75 0 0 1 8 8.25h6.5a.75.75 0 0 1 0 1.5H8A.75.75 0 0 1 7.25 9m0 4a.75.75 0 0 1 .75-.75h2.5a.75.75 0 0 1 0 1.5H8a.75.75 0 0 1-.75-.75m0 4a.75.75 0 0 1 .75-.75h1.5a.75.75 0 0 1 0 1.5H8a.75.75 0 0 1-.75-.75" clip-rule="evenodd"/></svg>
+					</a>
+				</div>
+			</div>
+		</section>
 
-		<h2 style="color:gray; margin-left: 50px;">Ainda Vazio...</h2>
+		<section class="landing-section landing-services">
+			<div class="landing-section__content">
+				<h2 class="section-title light">As Suas Soluções</h2>
+				<div class="landing-services__grid">
+					{landingservices.map((service, index) =>
+						<Card
+							title={service.title}
+							src={service.src}
+							alt={service.alt}
+							text={service.text}
+							url={service.url}
+							key={index}
+						/>
+					)}
+				</div>
+			</div>
+		</section>
+
+		<section class="landing-section landing-operation">
+			<div class="landing-section__content">
+				<h2 class="section-title section-title--large">Serviços e Atuação</h2>
+				<Spacer height="80px" />
+				<p>Os nossos serviços são realizados com foco em qualidade, atenção aos detalhes e total comprometimento com as necessidades de nossos clientes. Cada projeto é conduzido com profissionalismo e paixão pelo que fazemos.</p>
+				<Spacer height="60px" />
+				<div class="landing-operation__grid">
+					<ul class="landing-operation__list">
+						{[
+							{
+								title: "Planeamento Personalizado",
+								text: "Cada projeto é adaptado às necessidades específicas do cliente.",
+								icon: "hammer_and_wrench",
+								alt: "Ferramentas"
+							},
+							{
+								title: "Segurança nos Trabalhos",
+								text: "A intervenção é realizada com a máxima precisão e segurança",
+								icon: "briefcase",
+								alt: "Pasta"
+							},
+							{
+								title: "Inovação e Criatividade",
+								text: "Soluções modernas e eficientes que transformam ideias em realidade.",
+								icon: "electric_light_bulb",
+								alt: "Globo"
+							},
+							{
+								title: "Sustentabilidade",
+								text: "Usamos materiais e práticas que respeitam o meio ambiente sempre que possível.",
+								icon: "earth_globe",
+								alt: "Globo"
+							}
+						].map(item =>
+							<li class="landing-operation__item">
+								<div class="landing-operation__item-icon">
+									<Image 
+										src={icons[item.icon]()} 
+										alt={item.alt}
+										role="img"
+										height={40}
+									/>
+								</div>
+								<div class="landing-operation__item-text">
+									<h5>{item.title}</h5>
+									<p>{item.text}</p>
+								</div>
+							</li>
+						)}
+					</ul>
+					<div class="landing-operation__image">
+						<Image 
+							src={toolsTable}
+							alt=""
+						/>
+					</div>
+				</div>
+			</div>
+		</section>
+
+		<CallToaction />
+
+		<section class="landing-section landing-workflow">
+			<div class="landing-section__content">
+				<h2 class="section-title section-title--large">COMO FUNCIONA O PROCESSO</h2>
+				<Spacer height="80px" />
+				<div class="">
+
+				</div>
+			</div>
+		</section>
 
 		<br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>
 	</main>
 </MainLayout>
+
+<style>
+	.landing-section {
+		padding: 180px 0;
+	}
+	.section-title {
+		margin-bottom: 75px;
+	}
+	.section-title--large {
+		position: relative;
+		display: inline;
+	}
+	.section-title--large::after {
+		content: "";
+		position: absolute;
+		bottom: -15px;
+		left: 0;
+		width: 100%;
+		height: 10px;
+		background-color: var(--yellow-accent);
+	}
+	.landing-section__content {
+		--max-width: var(--header-width);
+		--min-margin: 50px;
+		max-width: calc(var(--max-width) + 2 * var(--min-margin));
+		width: 100%;
+		margin: auto;
+		padding: 0 var(--min-margin);
+		text-align: center;
+		position: relative;
+		z-index: 1;
+	}
+	.landing-introduction {
+		display: grid;
+		grid-template-columns: auto auto;
+		grid-template-rows: 1fr auto;
+		grid-template-areas: 
+			"media content"
+			"media cta";
+	}
+	.landing-introduction__media {
+		grid-area: media;
+		width: 700px;
+		height: 100%;
+	}
+	.landing-introduction__media img {
+		width: 100%;
+		height: 100%;
+	}
+	.landing-introduction__content {
+		grid-area: content;
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		padding: 0 60px;
+	}
+	.landing-introduction__heading {
+		text-align: center;
+	}
+	.landing-introduction__text {
+		margin-bottom: 20px;
+	}
+	.landing-introduction__cta {
+		grid-area: cta;
+		background-color: var(--gray-background);
+		padding: 15px 40px;
+		margin-left: 60px;
+		text-align: center;
+		display: flex;
+		flex-direction: column;
+		justify-content: center;
+		align-items: center;
+		gap: 20px;
+		box-shadow: rgba(0, 0, 0, 0.25) 0px 3px 8px;
+	}
+	.landing-introduction__cta p {
+		font: var(--text-lg);
+	}
+	.underline-bar {
+		background-color: var(--yellow-accent);
+		height: 12px;
+		width: 300px;
+		margin-top: 15px;
+		margin-bottom: 35px;
+	}
+	.landing-introduction__button {
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		gap: 10px;
+	}
+
+	.landing-services {
+		position: relative;
+		background-image: url('/images/backgrounds/digital-picture-world-from-outer-space.jpg');
+		background-repeat: no-repeat;
+		background-size: cover;
+		background-position-x: 60%;
+		overflow: hidden;
+	}
+	.landing-services::before {
+		content: "";
+		position: absolute;
+		inset: 0;
+		background: inherit; /* Mantém a imagem de fundo */
+		filter: blur(4px);
+		z-index: 0;
+	}
+	.landing-services__grid {
+		display: grid;
+		grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+		gap: 20px;
+		justify-items: center;
+	}
+
+	.landing-operation__grid {
+		display: grid;
+		grid-template-columns: 5fr 3fr;
+		grid-template-rows: auto;
+		align-items: stretch;
+		gap: 40px;
+		padding: 0 80px;
+	}
+	.landing-operation__list {
+		list-style-type: none;
+		display: flex;
+		flex-direction: column;
+		padding: 20px 0;
+	}
+	.landing-operation__item {
+		list-style-type: none;
+		display: grid;
+		grid-template-columns: auto 1fr;
+		text-align: start;
+		padding: 20px 0;
+	}
+	.landing-operation__item:first-child {
+		padding-top: 0;
+	}
+	.landing-operation__item:last-child {
+		padding-bottom: 0;
+	}
+	.landing-operation__item-icon {
+		padding: 10px;
+	}
+	.landing-operation__item-text {
+		padding-top: 5px;
+		padding-left: 15px;
+	}
+	.landing-operation__item-text h5 {
+		margin-bottom: 10px;
+	}
+	.landing-operation__item-text p {
+		margin-bottom: 10px;
+		font: var(--text-lg)
+	}
+	.landing-operation__image {
+		display: flex;
+		height: 0;
+		min-height: 100%;
+		overflow: auto;
+	}
+	.landing-operation__image img {
+		width: 100%;
+		height: 100%;
+    	object-fit: cover;
+	}
+
+	@media only screen and (max-width: 1486px) {
+		.landing-introduction {
+			grid-template-areas: 
+				"content"
+				"media"
+				"cta";
+			gap: 30px;
+			text-align: center;
+		}
+		.landing-introduction__media {
+			width: 100%;
+			height: 530px;
+			display: flex;
+			justify-content: center;
+		}
+		.landing-introduction__media img {
+			height: 100%;
+			width: auto;
+		}
+	}
+
+	@media only screen and (max-width: 1058px) {
+		.landing-services__grid {
+			grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+		}
+	}
+</style>
+
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+        const cards = document.querySelectorAll('.flip-card');
+        cards.forEach(card => {
+            if('ontouchstart' in window) {
+				card.addEventListener('click', function() {
+					card.classList.toggle('flipped');
+				});
+			} else {
+				card.addEventListener('mouseenter', function() {
+					card.classList.add('flipped');
+				});
+				card.addEventListener('mouseleave', function() {
+					card.classList.remove('flipped');
+				});
+			}
+        });
+    });
+</script>

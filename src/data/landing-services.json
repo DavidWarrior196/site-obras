@@ -1,0 +1,79 @@
+[
+    {
+        "title": "Montagem e Fixação",
+        "src": "montagem-fixacao.jpg",
+        "alt": "Montagem e Fixação",
+        "text": "Montagem e fixação de móveis, prateleiras, quadros, cortinas, persianas, varais, suportes para TV, entre outros.",
+        "url": "/servicos"
+    },
+    {
+        "title": "Pinturas",
+        "src": "pinturas.jpeg",
+        "alt": "Pinturas",
+        "text": "Pinturas de paredes, portas, janelas, portões, grades, móveis, entre outros.",
+        "url": "/servicos"
+    },
+    {
+        "title": "Impermeabilização",
+        "src": "impermeabilizacao.webp",
+        "alt": "Impermeabilização",
+        "text": "Impermeabilização de lajes, telhados, paredes, pisos, piscinas, caixas d'água, entre outros.",
+        "url": "/servicos"
+    },
+    {
+        "title": "Limpeza Pós-Obra",
+        "src": "limpeza-posobra.png",
+        "alt": "Limpeza Pós-Obra",
+        "text": "Limpeza pós-obra de residências após intervenção de construção ou reforma.",
+        "url": "/servicos"
+    },
+    {
+        "title": "Canalização",
+        "src": "canalizacao.webp",
+        "alt": "Canalização",
+        "text": "Reparação de canalizações de água, gás, esgotos ou fugas de água.",
+        "url": "/servicos"
+    },
+    {
+        "title": "Eletricidade",
+        "src": "eletricidade.jpg",
+        "alt": "Eletricidade",
+        "text": "Substituição de tomadas, reparação de curtos-circuitos ou resolução de falhas no quadro elétrico.",
+        "url": "/servicos"
+    },
+    {
+        "title": "Gesso Cartonado (Pladur)",
+        "src": "gesso-cartonado.jpg",
+        "alt": "Gesso Cartonado (Pladur)",
+        "text": "Revestimento de paredes e tetos com gesso cartonado, divisórias, teto falso, entre outros.",
+        "url": "/servicos"
+    },
+    {
+        "title": "Remodelação de Interiores",
+        "src": "remodelacao-interiores.jpg",
+        "alt": "Remodelação de Interiores",
+        "text": "Remodelação de interiores de residências, escritórios, lojas, entre outros.",
+        "url": "/servicos"
+    },
+    {
+        "title": "Pisos Laminados Flutuantes",
+        "src": "pisos-laminados-flutuantes.jpeg",
+        "alt": "Pisos Laminados Flutuantes",
+        "text": "Instalação de pisos laminados flutuantes em residências, escritórios, lojas, entre outros.",
+        "url": "/servicos"
+    },
+    {
+        "title": "Pisos Vinílicos",
+        "src": "pisos-vinilicos.webp",
+        "alt": "Pisos Vinílicos",
+        "text": "Instalação de pisos vinílicos em residências, escritórios, lojas, entre outros.",
+        "url": "/servicos"
+    },
+    {
+        "title": "Reparações Diversas",
+        "src": "reparacoes-diversas.jpg",
+        "alt": "Reparações Diversas",
+        "text": "Desde reparações de portas e janelas, a substituição de torneiras, autoclismos, entre outros.",
+        "url": "/servicos"
+    }
+]
