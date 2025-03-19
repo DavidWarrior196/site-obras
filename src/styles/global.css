@@ -1,4 +1,19 @@
-@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
+@import "tailwindcss";
+
+@theme {
+    --color-blue-primary: #003566;
+    --color-blue-secondary: #7AA9DD;
+    --color-yellow-accent: #FFC300;
+
+    --color-gray-pale: #EAEAEA;
+    --color-gray-light: #FCFCFC;
+
+    --color-gray-900: #212121;
+    --color-gray-700: #616161;
+    --color-gray-500: #9e9e9e;
+    --color-gray-300: #e0e0e0;
+    --color-gray-100: #f5f5f5;
+}
 
 /** VARIABLES **/
 :root {
@@ -64,7 +79,6 @@ body {
 }
 *, ::before, ::after {
     box-sizing: border-box;
-    margin: 0;
 }
 h1 {
     font: var(--h1);

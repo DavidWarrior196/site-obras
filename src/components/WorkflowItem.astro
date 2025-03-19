@@ -1,0 +1,31 @@
+---
+import Image from "astro/components/Image.astro";
+const { title, text, iconSrc, iconAlt, index } = Astro.props;
+---
+
+<div class="relative flex flex-col justify-start basis-78 md:h-88 h-72 bg-gray-200 border border-solid border-gray-300 rounded-md text-left gap-5 xl:p-8 md:max-xl:px-15 px-20 pt-8">
+    <div class="workflow-circle absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2 grid place-items-center rounded-full aspect-square w-48 bg-white">
+        <Image 
+            src={iconSrc} 
+            alt={iconAlt}
+            class="-rotate-z-135" 
+        />
+    </div>
+    <div class="flex flex-col gap-4 mt-24! text-center md:text-left">
+        <h5> {title} </h5>
+        <p class="text-lg"> {text} </p>
+    </div>
+    <div class="absolute top-2 left-2 grid place-items-center aspect-square w-8 bg-orange-500 text-white rounded-md">
+        {index}	
+    </div>
+</div>
+
+<style>
+    .workflow-circle {
+		border-top-style: dashed;
+		border-right-style: dashed;
+		border-width: 2px;
+		border-color: var(--gray-500);
+		transform: rotateZ(135deg);
+	}
+</style>

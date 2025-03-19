@@ -1,0 +1,40 @@
+---
+import { Image } from "astro:assets";
+import copyIcon from "@assets/icons/copy.svg";
+import newtabIcon from "@assets/icons/newtab.svg";
+
+const { iconSrc, iconAlt, heading, text, variant } = Astro.props;
+
+const variantClasses = variant === "highlight" 
+                        ? "bg-blue-primary" 
+                        : "bg-gradient-to-tl from-[#7aa9dd] to-[#ffc300]";
+const classes = "relative p-[2px] h-64 basis-100".concat(" ", variantClasses);
+
+const variantClasses2 = variant === "highlight"
+                        ? "bg-blue-primary"
+                        : "bg-white"
+const classes2 = "relative flex flex-col justify-center items-center p-6 h-full".concat(" ", variantClasses2);
+---
+
+<div class={classes}>
+    <div class={classes2}>
+        <Image 
+            src={iconSrc}
+            alt={iconAlt}
+            role="img"
+            class="aspect-square w-20"
+        />
+        <h5 class={`${variant === 'highlight' ? 'text-white mt-8' : 'text-black mt-5 mb-2'}`}>{heading}</h5>
+        {variant === "standart" && <p>{text}</p>}
+        
+        {variant === "standart" 
+            ? <button class="absolute top-3 right-3 cursor-pointer copy-btn">
+                <img src={copyIcon.src} alt="copy" />
+              </button>
+            : <img src={newtabIcon.src} alt="open" class="absolute top-3 right-3 cursor-pointer" />
+        }
+
+    </div>
+</div>
+
+<script> import "@utils/copy-clipboard.js"; </script>

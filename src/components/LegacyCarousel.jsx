@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import '../styles/globals.css';
+import '@styles/global.css';
 
 export default function Carousel({ slides }) {
 

@@ -5,7 +5,7 @@ import { Pagination, Navigation, Autoplay, Parallax } from "swiper/modules";
 import "swiper/css";
 import 'swiper/css/pagination';
 
-import "../styles/globals.css";
+import "@styles/global.css";
 
 export default function Slider({ slides }) {
   

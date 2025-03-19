@@ -2,18 +2,19 @@
 import carouselData from '../data/carousel-data.json';
 import landingservices from '../data/landing-services.json';
 
-import Carousel from '../components/Carousel';
-import Card from '../components/Card.astro';
+import Carousel from '@components/Carousel';
+import Card from '@components/Card.astro';
 import MainLayout from '../layouts/MainLayout.astro';
-import Spacer from '../components/Spacer.astro';
+import Spacer from '@components/Spacer.astro';
 import { Image } from 'astro:assets';
 import type { ImageMetadata } from 'astro';
 
-import toolsTable from '../assets/images/tools-table.jpg';
-import image from '../assets/images/martelo-aço-com-outros-elementos-construção-ferramentas.jpg';
-import CallToaction from '../components/CallToAction.astro';
+import toolsTable from '@assets/images/tools-table.jpg';
+import image from '@assets/images/martelo-aço-com-outros-elementos-construção-ferramentas.jpg';
+import CallToaction from '@components/CallToAction.astro';
+import WorkflowItem from '@components/WorkflowItem.astro';
 
-const iconsPaths = import.meta.glob<{ default: ImageMetadata }>("../assets/icons/*.svg");
+const iconsPaths = import.meta.glob<{ default: ImageMetadata }>("@assets/icons/*.svg");
 const icons = Object.keys(iconsPaths).reduce((acc, filePath) => {
 	const iconName = filePath.split("/").pop()?.split(".").shift();
 	if(iconName && iconsPaths[filePath]) {
@@ -21,8 +22,6 @@ const icons = Object.keys(iconsPaths).reduce((acc, filePath) => {
 	}
 	return acc;
 }, {} as Record<string, () => Promise<{ default: ImageMetadata }>>);
-
-console.log(icons)
 
 const pageTitle = "Página Inicial";
 ---
@@ -157,13 +156,168 @@ const pageTitle = "Página Inicial";
 			<div class="landing-section__content">
 				<h2 class="section-title section-title--large">COMO FUNCIONA O PROCESSO</h2>
 				<Spacer height="80px" />
-				<div class="">
-
+				<div>
+					<div class="relative xl:flex xl:justify-center grid gap-x-4 gap-y-30 md:grid-cols-2 md:grid-rows-2 grid-cols-1 grid-rows-4 mt-24!">
+						{[
+							{
+								"title": "Pedido de Orçamento",
+								"text": "O cliente entra em contato pelo formulário, e-mail, telefone ou mensagem para solicitar o orçamento.",
+								"iconSrc": icons['paper_signature'](),
+								"iconAlt": "Pedido de Orçamento",
+							},
+							{
+								"title": "Acordo de Orçamento",
+								"text": "Equipa e cliente definem o orçamento e todos os detalhes do serviço solicitado.",
+								"iconSrc": icons['business_handshake'](),
+								"iconAlt": "Aperto de mão",
+							},
+							{
+								"title": "Execução do Serviço",
+								"text": "Os profissionais realizam o trabalho com excelência, seja construção, reforma ou limpeza.",
+								"iconSrc": icons['helmet_tools'](),
+								"iconAlt": "Ferramentas de Construção",
+							},
+							{
+								"title": "Limpeza Pós-Obras",
+								"text": "Após o serviço, o espaço é limpo, deixando tudo impecável e pronto para uso.",
+								"iconSrc": icons['cleaning_products'](),
+								"iconAlt": "Produtos de Limpeza",
+							}
+						].map((item, index) =>
+							<WorkflowItem 
+								title={item.title}
+								text={item.text}
+								iconSrc={item.iconSrc}
+								iconAlt={item.iconAlt}
+								index={index + 1}
+							/>
+						)}
+					</div>
+					<div class="workflow-gradient absolute -bottom-10 left-0 w-full h-[calc(100%_-_80px)] rounded-[50%] bg-radial/oklch from-[#ffd51946] from-0% to-[#d9bc3900] to-60% -z-1" />
 				</div>
 			</div>
 		</section>
 
-		<br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>
+		<section class="landing-section landing-workflow">
+			<div class="landing-section__content">
+				<h2 class="section-title">Já realizamos todo o tipo de trabalhos de construção e estamos prontos para o próximo!</h2>
+				<div class="" />
+
+				<div class="grid grid-cols-1 grid-rows-28 h-560 md:grid-cols-12 lg:grid-rows-12 gap-2 lg:h-300 md:grid-rows-20 md:h-400">
+					<div class="
+						col-start-1 col-span-1 row-start-1 row-span-4 
+						md:col-span-6 
+						lg:col-span-5 lg:row-span-3
+					">
+						<img
+							src="https://picsum.photos/seed/a/1200/800"
+							alt="Random Image"
+							class="object-cover object-center w-full h-full rounded-md"		
+						/>
+					</div>
+					<div class="
+						row-start-5 col-start-1 col-span-1 row-span-4 
+						md:row-start-1 md:col-start-7 md:col-span-6 
+						lg:col-start-6 lg:col-span-3 lg:row-span-3
+					">
+						<img
+							src="https://picsum.photos/seed/b/800/800"
+							alt="Random Image"
+							class="object-cover object-center w-full h-full rounded-md"		
+						/>
+					</div>
+					<div class="
+						row-start-9 col-start-1 row-span-4 
+						md:col-start-1 md:col-span-5 md:row-start-5 md:row-span-6 
+						lg:col-start-9 lg:col-span-4 lg:row-start-1 lg:row-span-3
+					">
+						<img
+							src="https://picsum.photos/seed/c/800/800"
+							alt="Random Image"
+							class="object-cover object-center w-full h-full rounded-md"		
+						/>
+					</div>
+					<div class="
+						row-start-13 row-span-4 col-start-1 col-span-1 
+						md:col-start-6 md:col-span-7 md:row-start-5 md:row-span-3 
+						lg:col-start-1 lg:col-span-4 lg:row-start-4 lg:row-span-6
+					">
+						<img
+							src="https://picsum.photos/seed/d/800/800"
+							alt="Random Image"
+							class="object-cover object-center w-full h-full rounded-md"		
+						/>
+					</div>
+					<div class="
+						row-start-17 row-span-4 col-start-1 col-span-1 
+						md:col-start-6 md:col-span-7 md:row-start-8 md:row-span-3 
+						lg:col-start-5 lg:col-span-3 lg:row-start-4 lg:row-span-3
+					">
+						<img
+							src="https://picsum.photos/seed/e/1200/800"
+							alt="Random Image"
+							class="object-cover object-center w-full h-full rounded-md"		
+						/>
+					</div>
+					<div class="
+						row-start-21 row-span-4 col-start-1 col-span-1 
+						md:col-span-6 md:row-start-11 
+						lg:col-start-8 lg:col-span-5 lg:row-start-4 lg:row-span-3
+					">
+						<img
+							src="https://picsum.photos/seed/f/1200/800"
+							alt="Random Image"
+							class="object-cover object-center w-full h-full rounded-md"		
+						/>
+					</div>
+					<div class="
+						row-start-25 row-span-4 col-start-1 col-span-1 
+						md:col-start-7 md:col-span-6 md:row-start-11 
+						lg:col-start-5 lg:col-span-4 lg:row-start-7 lg:row-span-3
+					">
+						<img
+							src="https://picsum.photos/seed/g/1200/800"
+							alt="Random Image"
+							class="object-cover object-center w-full h-full rounded-md"		
+						/>
+					</div>
+					<div class="
+						hidden col-start-1 col-span-7 row-start-15 row-span-3 
+						md:block 
+						lg:col-start-9 lg:col-span-4 lg:row-start-7 lg:row-span-3
+					">
+						<img
+							src="https://picsum.photos/seed/h/1200/800"
+							alt="Random Image"
+							class="object-cover object-center w-full h-full rounded-md"		
+						/>
+					</div>
+					<div class="
+						hidden col-start-1 col-span-7 row-start-18 row-span-3 
+						md:block 
+						lg:col-start-1 lg:col-span-6 lg:row-start-10 lg:row-span-12
+					">
+						<img
+							src="https://picsum.photos/seed/i/1200/800"
+							alt="Random Image"
+							class="object-cover object-center w-full h-full rounded-md"		
+						/>
+					</div>
+					<div class="
+						hidden col-start-8 col-span-5 row-start-15 row-span-6 
+						md:block 
+						lg:col-start-7 lg:col-end-13 lg:row-start-10 lg:row-span-12
+					">
+						<img
+							src="https://picsum.photos/seed/j/1200/800"
+							alt="Random Image"
+							class="object-cover object-center w-full h-full rounded-md"		
+						/>
+					</div>
+				</div>
+			</div>
+		</section>
+
 	</main>
 </MainLayout>
 

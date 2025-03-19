@@ -1,13 +1,65 @@
 ---
 import PageLayout from "../layouts/PageLayout.astro";
-import background from "../assets/images/backgrounds/business-handshake.jpg";
+import ContactElement from "@components/ContactElement.astro";
+import Form from "@components/Form.jsx";
+
+import background from "@assets/images/backgrounds/business-handshake.jpg";
 
 const pageTitle = "Contactos";
 const pageName = "Contactos";
+
+const iconsPaths = import.meta.glob<{ default: ImageMetadata }>("@assets/icons/*.svg");
+const icons = Object.keys(iconsPaths).reduce((acc, filePath) => {
+	const iconName = filePath.split("/").pop()?.split(".").shift();
+	if(iconName && iconsPaths[filePath]) {
+		acc[iconName] = iconsPaths[filePath];
+	}
+	return acc;
+}, {} as Record<string, () => Promise<{ default: ImageMetadata }>>);
 ---
 
 <PageLayout 
     pageTitle={pageTitle}
     pageName={pageName}
     background={background}
-/>
+>
+    <main>
+        <section class="space-x-12">
+            <div class="w-full max-w-[calc(var(--max-width) + 2 * var(--min-margin))] m-auto px-[var(--min-margin)] relative z-1">
+                
+                <h2 class="relative inline mb-20">Entre em contacto</h2>
+                
+                <p>Entre em contato conosco para tirar dúvidas, obter mais informações sobre nossos serviços ou discutir projetos.</p>
+                <p>Siga-nos no Facebook para acompanhar contactarnos diretamente, acompanhar os trabalhos mais recentes e juntar-se à comunidade.</p>
+
+                <div class="flex justify-center w-full gap-4">
+                    <ContactElement
+                        variant="standart"
+                        iconSrc={icons["phone"]()}
+                        iconAlt="Phone"
+                        heading="Telefone"
+                        text="(+351) 912 345 678"
+                    />
+                    <ContactElement
+                        variant="highlight"
+                        iconSrc={icons["facebook"]()}
+                        iconAlt="Facebook"
+                        heading="Facebook"
+                    />
+                    <ContactElement
+                        variant="standart"
+                        iconSrc={icons["email"]()}
+                        iconAlt="Email"
+                        heading="Email"
+                        text="emailexample@example.com"
+                    />
+                </div>
+
+                <p>As nossas áreas de atuação incluem [região], [região], [região], [região], [região], [região], [região], [região], [região], [região] e [região].</p>
+                <p>Consulte-nos para saber se atendemos à sua localização.</p>
+
+                <Form client:only="react" />
+            </div>
+        </section>
+    </main>
+</PageLayout>

@@ -31,12 +31,8 @@ const { pageTitle, pageName, background } = Astro.props;
         </div>
     </div>
     <main id="main">
-		<br/><br/><br/><br/><br/>
-
-		<h2 style="color:gray; margin-left: 50px;">Ainda Vazio...</h2>
-
-		<br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>
+		<slot />
 	</main>
 </MainLayout>
 
-<script> import "../scripts/parallax-effect.js"; </script>
+<script> import "@utils/parallax-effect.js"; </script>
